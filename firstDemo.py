@@ -1,3 +1,5 @@
+import time
+
 from appium import webdriver
 from typing import Any, Dict
 from appium.options.common import AppiumOptions
@@ -21,5 +23,6 @@ driver = webdriver.Remote(url, options=AppiumOptions().load_capabilities(cap))
 
 el = driver.find_element(by=AppiumBy.XPATH, value="//*[@text='Battery']")
 el.click()
+time.sleep(3)
 
 driver.quit()
