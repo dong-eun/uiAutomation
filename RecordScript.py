@@ -23,9 +23,9 @@ driver.implicitly_wait(50)
 
 wait = WebDriverWait(driver, 10)
 
-wait.until(EC.presence_of_element_located((AppiumBy.ACCESSIBILITY_ID)))
+el = wait.until(EC.presence_of_element_located((AppiumBy.ID, 'com.android.permissioncontroller:id/permission_allow_button')))
 
-driver.find_element(by=AppiumBy.XPATH, value='//android.widget.Button[@text="Allow"]').click()
+el.click()
 
 el1 = driver.find_element(by=AppiumBy.ACCESSIBILITY_ID, value="Create contact")
 el1.click()
