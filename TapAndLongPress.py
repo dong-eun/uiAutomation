@@ -36,7 +36,7 @@ action = ActionChains(driver)
 # 롱 프레스할 요소 선택
 target_element = element[1]
 
-action.w3c_actions.pointer_action.pointer_down(target_element).pause(2000).pointer_up().release()
+# action.w3c_actions.pointer_action.pointer_down(target_element).pause(2000).pointer_up().release()
 
 action.w3c_actions.pointer_action.click_and_hold(target_element).pause(2).release()
 action.perform()
