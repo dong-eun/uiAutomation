@@ -37,6 +37,8 @@ except Exception as e:
 
 driver.find_element(by=AppiumBy.XPATH, value='//android.widget.Button[@text="Allow"]').click()
 
+driver.find_element(by=AppiumBy.XPATH, value='//android.widget.ListView[@resource-id="android:id/list"]').click()
+
 element = driver.find_elements(AppiumBy.XPATH, '//android.widget.TextView[@resource-id="com.google.android.contacts:id/cliv_name_textview"]')
 print(len(element))
 
