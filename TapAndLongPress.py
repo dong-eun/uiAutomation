@@ -26,6 +26,15 @@ url = "http://localhost:4723"
 driver = webdriver.Remote(url, options=AppiumOptions().load_capabilities(cap))
 driver.implicitly_wait(50)
 
+try:
+    skip_elements = driver.find_elements(by=AppiumBy.XPATH, value='//android.widget.Button[@text="Skip"]')
+    if skip_elements:
+        skip_elements[0].click()
+    else:
+        pass
+except Exception as e:
+    print(f"An error occurred: {e}")
+
 driver.find_element(by=AppiumBy.XPATH, value='//android.widget.Button[@text="Allow"]').click()
 
 element = driver.find_elements(AppiumBy.XPATH, '//android.widget.TextView[@resource-id="com.google.android.contacts:id/cliv_name_textview"]')
@@ -34,7 +43,7 @@ print(len(element))
 action = ActionChains(driver)
 
 # 롱 프레스할 요소 선택
-target_element = element[1]
+target_element = element[0]
 
 # action.w3c_actions.pointer_action.pointer_down(target_element).pause(2000).pointer_up().release()
 
