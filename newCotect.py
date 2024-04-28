@@ -22,11 +22,18 @@ url = "http://localhost:4723"
 driver = webdriver.Remote(url, options=AppiumOptions().load_capabilities(cap))
 driver.implicitly_wait(50)
 
+skip_element = driver.find_element(by=AppiumBy.XPATH, value='//android.widget.Button[@text="Skip"]')
+
+if skip_element:
+    skip_element.click()
+else:
+    pass
+
 driver.find_element(by=AppiumBy.XPATH, value='//android.widget.Button[@text="Allow"]').click()
 
 driver.find_element(by=AppiumBy.ACCESSIBILITY_ID, value='Create contact').click()
 
-driver.find_element(by=AppiumBy.XPATH, value='//android.widget.EditText[@text="First name"]').send_keys("Dominic")
+driver.find_element(by=AppiumBy.XPATH, value='//android.widget.EditText[@text="First name"]').send_keys("Dominic02")
 
 driver.find_element(by=AppiumBy.XPATH, value='//android.widget.EditText[@text="Last name"]').send_keys("Jun")
 
