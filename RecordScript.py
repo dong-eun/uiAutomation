@@ -24,6 +24,13 @@ driver.implicitly_wait(50)
 
 wait = WebDriverWait(driver, 10)
 
+skip_element = driver.find_element(by=AppiumBy.XPATH, value='//android.widget.Button[@text="Skip"]')
+
+if skip_element:
+    skip_element.click()
+else:
+    pass
+
 el = wait.until(EC.presence_of_element_located((AppiumBy.ID, 'com.android.permissioncontroller:id/permission_allow_button')))
 
 el.click()
