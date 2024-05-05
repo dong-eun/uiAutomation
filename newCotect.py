@@ -22,7 +22,7 @@ url = "http://localhost:4723"
 driver = webdriver.Remote(url, options=AppiumOptions().load_capabilities(cap))
 driver.implicitly_wait(50)
 
-skip_element = driver.find_element(by=AppiumBy.XPAT경H, value='//android.widget.Button[@text="Skip"]')
+skip_element = driver.find_element(by=AppiumBy.XPATH, value='//android.widget.Button[@text="Skip"]')
 
 if skip_element:
     skip_element.click()
