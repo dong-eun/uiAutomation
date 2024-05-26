@@ -52,3 +52,6 @@ try:
     alert.accept()
 except Exception as e:
     print(f"An error occurred: {e}")
+
+# alert = driver.switch_to.alert
+# alert.accept()
