@@ -27,26 +27,14 @@ driver = webdriver.Remote(url, options=AppiumOptions().load_capabilities(cap))
 driver.implicitly_wait(50)
 
 try:
-    next_button = driver.find_element(AppiumBy.XPATH, '//android.widget.Button[@text="NEXT"]')
-    next_button.click()
-except Exception as e:
-    print(f"An error occurred: {e}")
-
-try:
-    next_button_2 = driver.find_element(AppiumBy.XPATH, '//android.widget.Button[@text="NEXT"]')
-    next_button_2.click()
-except Exception as e:
-    print(f"An error occurred: {e}")
-
-try:
     allow_button = driver.find_element(AppiumBy.XPATH, '//android.widget.Button[@text="Allow"]')
     allow_button.click()
-except NoSuchElementException:
-    print("Can not find element")
+except Exception as e:
+    print(f"An error occurred: {e}")
 
 try:
-    skip = driver.find_element(AppiumBy.XPATH, '//android.widget.Button[@text="SKIP"]')
-    skip.click()
+    skip_button = driver.find_element(AppiumBy.XPATH, '//android.widget.Button[@text="SKIP"]')
+    skip_button.click()
 except Exception as e:
     print(f"An error occurred: {e}")
 
