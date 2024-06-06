@@ -78,13 +78,13 @@ except Exception as e:
     print(f"An error occurred: {e}")
 
 try:
-    about_button = driver.find_element(AppiumBy.XPATH, '//android.view.View[@text="About"]')
+    about_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.View[@text="About"]')))
     about_button.click()
 except Exception as e:
     print(f"An error occurred: {e}")
 
 try:
-    detail_button = driver.find_element(AppiumBy.XPATH, '//android.view.View[@text="Details"]')
+    detail_button = WebDriverWait(driver, 10).until(EC.presence_of_element_located((AppiumBy.XPATH, '//android.view.View[@text="Details"]')))
     print(detail_button.text)
 except Exception as e:
     print(f"An error occurred: {e}")
