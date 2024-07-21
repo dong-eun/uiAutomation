@@ -7,6 +7,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import ElementNotVisibleException, NoSuchElementException
 
+# 설정된 capabilities로 Appium 설정
 cap: Dict[str, Any] = {
     "platformName": "Android",
     "platformVersion": "13.0",
@@ -16,32 +17,40 @@ cap: Dict[str, Any] = {
     "appActivity": ".ApiDemos"
 }
 
+# Appium 서버 URL
 url = "http://localhost:4723"
 
+# WebDriver 인스턴스 생성 및 설정 로드
 driver = webdriver.Remote(url, options=AppiumOptions().load_capabilities(cap))
-driver.implicitly_wait(50)
+driver.implicitly_wait(50)  # 암시적 대기
 
+# 'Continue' 버튼 찾기
 continue_el = driver.find_element(AppiumBy.XPATH, '//android.widget.Button[@text="Continue"]')
 
+# 'Continue' 버튼이 표시되면 클릭하고 다음 알림 대기
 if continue_el.is_displayed():
     continue_el.click()
-    wait = WebDriverWait(driver,10)
+    wait = WebDriverWait(driver, 10)  # 명시적 대기
     el1 = wait.until(EC.presence_of_element_located((AppiumBy.ID, "android:id/button1")))
     el1.click()
 
+# 명시적 대기와 무시할 예외 설정
 wait1 = WebDriverWait(driver, 10, poll_frequency=1, ignored_exceptions=[ElementNotVisibleException, NoSuchElementException])
 
+# 'Views' 항목이 나타날 때까지 대기하고 클릭
 el2 = wait1.until(EC.presence_of_element_located((AppiumBy.XPATH, "//android.widget.TextView[@text='Views']")))
 el2.click()
 
+# 'Gallery' 항목이 나타날 때까지 대기하고 클릭
 el3 = wait1.until(EC.presence_of_element_located((AppiumBy.XPATH, "//android.widget.TextView[@text='Gallery']")))
 el3.click()
 
+# '1. Photos' 항목이 나타날 때까지 대기하고 클릭
 el4 = wait1.until(EC.presence_of_element_located((AppiumBy.XPATH, "//android.widget.TextView[@text='1. Photos']")))
 el4.click()
 
-# driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, 'new UiScrollable(new UiSelector().scrollable(true)).setAsHorizontalList().scrollToEnd(5)')
-# driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, 'new UiScrollable(new UiSelector().scrollable(true)).setAsHorizontalList().scrollToBeginning(5)')
-
+# 수평 스크롤 가능한 목록을 앞으로 스크롤
 driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, 'new UiScrollable(new UiSelector().scrollable(true)).setAsHorizontalList().scrollForward(5)')
+
+# 수평 스크롤 가능한 목록을 뒤로 스크롤
 driver.find_element(AppiumBy.ANDROID_UIAUTOMATOR, 'new UiScrollable(new UiSelector().scrollable(true)).setAsHorizontalList().scrollBackward(5)')
